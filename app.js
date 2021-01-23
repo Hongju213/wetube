@@ -16,6 +16,10 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(helmet());
+app.use(function(req, res, next) {
+    res.setHeader("Content-Security-Policy", "script-src 'self' https://archive.org");
+    return next();
+    });
 app.use(morgan("dev"))
 app.use(localsMiddleware);
 
